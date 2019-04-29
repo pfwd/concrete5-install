@@ -1,0 +1,43 @@
+{
+  "name": "concrete5/composer",
+  "description": "A fully featured skeleton for a composer managed concrete5 site",
+  "type": "project",
+  "license": "MIT",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "ConcreteComposer\\" : "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ConcreteComposer\\" : "./tests"
+    }
+  },
+  "require": {
+    "composer/installers": "^1.3",
+    "concrete5/core": "^8.2",
+    "vlucas/phpdotenv": "^2.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0",
+    "mockery/mockery": "^1.2"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-8.x": "8.x-dev"
+    },
+    "installer-paths": {
+      "public/concrete": ["type:concrete5-core"],
+      "public/application/themes/{$name}": ["type:concrete5-theme"],
+      "public/packages/{$name}": ["type:concrete5-package"],
+      "public/application/blocks/{$name}": ["type:concrete5-block"]
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
