@@ -1,7 +1,7 @@
 version: '3.4'
 
 volumes:
-  mysql_data_rebuild:
+  mysql_data:
     driver: local
   site_files:
     driver: local
@@ -39,10 +39,10 @@ services:
     ports:
       - 80:80
     networks:
-      - icp
+      - test_net
 
   mysql:
-    image: mysql:8
+    image: mysql:5.7
     restart: always
     container_name: mysql
     ports:
@@ -50,14 +50,13 @@ services:
     depends_on:
        - apache
     volumes:
-      - mysql_data_rebuild:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
       - ./docker/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/mysqld_charset.cnf
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     env_file:
       - .env
     networks:
-      - icp
+      - test_net
 
 networks:
-  icp:
+  test_net:
     driver: bridge
