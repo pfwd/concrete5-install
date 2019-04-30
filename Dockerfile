@@ -1,6 +1,6 @@
 FROM php:7.2-apache
 
-LABEL maintainer="Peter Fisher <hello@websomatic.co.uk>"
+LABEL maintainer="Peter Fisher"
 
 RUN apt-get update          \
     && apt-get install -y   \
@@ -16,7 +16,6 @@ RUN apt-get update          \
         libjpeg62-turbo-dev \
         libmcrypt-dev       \
         libzip-dev          \
-        zip                 \
     && pecl install mcrypt-1.0.1                                                                    \
     && docker-php-ext-install mysqli pdo_mysql iconv simplexml                                      \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/  \
